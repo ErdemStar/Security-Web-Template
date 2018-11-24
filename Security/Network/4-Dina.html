@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<html lang="tr">
+
+<head>
+	<title>Dina 1.0</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../../index.html">Anasayfa</a></h1>
+		</header>
+
+		<!-- Main -->
+		<article id="main">
+
+			<section class="wrapper style5">
+
+				<div class="inner">
+					<h2>Hoşgeldiniz</h2>
+					<p>Bugün sizlere Dina 1.0'in nasıl çözüldüğünü göstermek istiyorum.Bu CTF'deki amacımız hedefe sızıp root olmak ve /root/flag.txt dosyana erişmektir.CTF hakkında daha fazla bilgiye ulaşmak için <a target="_blank" href="https://www.vulnhub.com/entry/dina-101,200//">tıklayınız</a>.</p>
+					<section>
+						<h4>Geçtiğimiz adımlar</h4>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<ul>
+									<li>Netdiscover ile IP adresi tespiti</li>
+									<li>Nmap ile açık port'ların tespiti</li>
+									<li>Dirb ile 80 üzerine port dosya keşfi</li>
+									<li>John ile zip şifresi kırma</li>
+									<li>Metasploit ile playSMS script'ini kullanarak shell alma</li>
+									<li>Perl ile reverse-shell script'i yazıp root olma</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>İlk adımda netdiscover komutu ile hedefin kulladığı IP adresini tespit ettim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/4-Dina/1.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Nmap kullanarak hedef üzerinde çalışan servis ve portları buldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/4-Dina/2.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Elimde 80 portundan başka birşey kalmadığı için dirb ile 80 portu üzerinde işlem yaptım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/4-Dina/3.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Dirb çıktısınaki url'leri incelerken karşıma zip dosyası çıktı.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/4-Dina/4.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Bu zip dosyasını incelemek üzere indirdim fakat şifrelenmişti.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/4-Dina/5.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Zip dosyasını şimdilik bırakıp diğer url'leri incelemeye devam ederken karşıma resimdeki sayfa çıktı.Bu sayfa üzerinde bulunan password'leri kaydedip incelemeye devam ettim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/4-Dina/6.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Diğer sayfalardan kayde değer birşey bulamayınca elde ettim password'ler zip kırmak için kullandım.İlk başta zip2john ile zip'i john'un anlayacabileceği hale getirdim.Daha sonra john'a bulduğum password'ler için oluşturduğum wordlist'i vererek zip'i kırdım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/4-Dina/7.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Zip içersinden bir mp3 çıktı fakat ben işimi garantiye almak için "strings" komutu ile inceleyip içersinde birşey gizlenip gizlenmediğini öğrenmek istedim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/4-Dina/8.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>"Strings" çıktısından sonra artık gideceğim url belirlenmişti."playSMS" adlı bir login sayfasına yönlendirildim.Login olmak için username'ı bir önceki adımda örneğirken password'u ilk başlarda bir sayfa üzerinden bulduğum passwod'lerden elde ettim.(username:toucid ,password:diana)</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/4-Dina/9.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>"playSMS" hakkında biraz araştırma yaptım ve karşıma metasploit üzerinde bulunan bir script geldi fakat bu kullandığım makina üzerinde mevcut değildi.Daha sonra script'in source koduna ulaştım ve manuel olarak metasploit'e bu script'i ekledim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/4-Dina/10.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Fotoğrafta göstediğim yolda /exploit altına self adlı bir dosya oluşturup daha sonra elde ettiğim kaynak kodlarını playsms.rb adlı bir script'e yazdım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/4-Dina/11.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha sonra module'u metasploit üzerinden bulup gerekli parametreleri ekliyorum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/4-Dina/12.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="inner">
+					<p>Artık hedefe shell olabildim.Bu işlemden sonra hedef üzerinde daha fazla bilgi elde etmek için linenum.sh script'ini kullanıp bilgi topladım.Bu script çıktısından şöyle bir bilgi elde ettim.Burada "sudo perl script-adı.pl" şeklinde bir script çalıştırırsam root şifresinin gerekli olmadığını gösterdi.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/4-Dina/13.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Bu bilgiden sonra hedef üzerinden perl'le bir reverse-shell yazıp kendi bilgisayarımda önceden belirlediğim bir port'a istek atıp root oldum :)</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/4-Dina/14.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="inner">
+					<blockquote>Herhangi bir tavsiyede , eksikte veya problem'de bana aşağıdan paylaştığım sosyal medya hesapları üzerinden ulaşabilirsiniz.</blockquote>
+				</div>
+
+
+			</section>
+
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="https://www.youtube.com/channel/UCu5NyREC0zwn76fnj7UlevA" class="icon fa-youtube"><span class="label">Facebook</span></a></li>
+				<li><a href="https://www.linkedin.com/in/erdemyildiz/" class="icon fa-linkedin"><span class="label">Dribbble</span></a></li>
+				<li><a href="https://github.com/ErdemStar" class="icon fa-github"><span class="label">Email</span></a></li>
+			</ul>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
