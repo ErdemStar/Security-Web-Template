@@ -1,0 +1,311 @@
+<!DOCTYPE HTML>
+<html lang="tr">
+
+<head>
+	<title>Derpnstink</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../../index.html">Anasayfa</a></h1>
+		</header>
+
+		<!-- Main -->
+		<article id="main">
+
+			<section class="wrapper style5">
+
+				<div class="inner">
+					<h2>Hoşgeldiniz</h2>
+					<p>Bugün sizlere Derpnstink'in nasıl çözüldüğünü göstermek istiyorum.Bu CTF'deki amacımız hedefe sızıp root olmak ve 4 tane gizlenmiş flag'i bulmaktır.CTF hakkında daha fazla bilgiye ulaşmak için <a target="_blank" href="https://www.vulnhub.com/entry/derpnstink-1,221/">tıklayınız</a>.</p>
+					<section>
+						<h4>Geçtiğimiz adımlar</h4>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<ul>
+									<li>Netdiscover ile IP adresi tespiti</li>
+									<li>Nmap ile açık port'ların tespiti</li>
+									<li>Host dosyama kayıt ekleme</li>
+									<li>Dirb ile 80 üzerine port dosya keşfi</li>
+									<li>Wpscan ile wordpress üzerinde keşif</li>
+									<li>Wordpress'e login olup reverse-shell alma</li>
+									<li>MySQL'den elde edilen password'u kullanıp "stinky" olma</li>
+									<li>Wireshark ile pcap dosyası okuyup "mrderp" olma</li>
+									<li>"mrderp" üzerinde sudo yetkisiyle reverse-shell alıp root olma</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>İlk adımda netdiscover komutu ile hedefin kulladığı IP adresini tespit ettim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/1.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+
+				<!-- image -->
+				<div class="inner">
+					<p>Dirp kullanmadan önce url'e ip adresini yazdığımda gelen sayfayı incelemek istedim.Daha sonra küçük bir bilgilendirme yazısı buldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/3.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Yukarıdaki bilgiden yola çıkarak kendi makinam üzerinde şöyle bir host kaydı girip yoluma devam ettim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/4.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Host kaydı girdikten sonra hedef üzerinde hangi servis ve port'ların kullanıdğını görmek için nmap'i kullandım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/2.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>80 portu üzerinde gizlenmiş yada gizlenmemiş dosyaları ve yolları bulmak için dirb'i kullandım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/5.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Dirb çıktısını biraz inceledikten sonra ilk flag'ımı buldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/6.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Derb çıktısıyla tam olarak işim bitmedi.Elde ettiğim url'leri biraz incelediğimde hedef kendi üzerinde wordpress çalıştırdığını öğrendim.Daha sonra Wpscan ile wordpress hakkında bilgi toplayamaya çalıştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/7.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Wpscan'ini kullanıp ileride işime yaracak username bilgilerine ulaştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/8.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Önceki CTF sayfalarında bahsetmiştim.Bir wordpress login ile karşılaştığımda username ve password'u aynı olarak girip login olmaya çalışıyorum.Bu CTF'de aygın şekilde "username:admin , password:admin" olarak girdiğimde login olmayı başarıyorum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/9.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Wordpress üzerinde ne yapabileceğimi araştırırken hedef'in slider (fotoğrafların kaydığı yer) kısmına admin hesabından fotoğraf yüklenebieceğini keşfettim.Aynı ekranda dosya yükleme kısmıda vardı.Burada php-reverse-shell script'i yüklemeye çalışarak hedeften reverse-shell almaya çalıştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/10.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Hedef üzerinde wordpress'in çalıştırıldığını biliyordum.Bu yüzden "/var/www/html" bu path'e gidip hedefin çalıştırdığı MySQL username ve password'u hakkında bilgi toplamaya çalışıyordum.Fotoğrafta'da görebileceğiniz gibi bu bilgiyi elde ettim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/11.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>MySQL'e bağlanıp olabildiğince veri tabanlarında oluşturulan table'lardan username ve password bilgileri topladım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/12.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="inner">
+					<p>Bu arama işlemi esnasında ikinci flag'ımı buldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/13.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>MySQL'den elde ettiğim hash'lenmiş password'ları internet üzerinde bulduğum bir site üzerinden kırmaya çalıştım ve işe yarabilecek password'lar elde ettim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/14.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Yukarıda MySQL password'lerini bulduğum yerde "unclestinky:wedgie57" password'unun karşılık geldiğini öğrendim.Daha sonra shell olduğum yerde geçerli kullancıları öğrendiğimde karşıma "mrderp ve stinky" user'ları çıktı.Elde ettiğim "wedgie57" passwordu'nu bu user'ların passwordları olarak kullandığımda "stinky:wedgie57" ile bağlanabildim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/15.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Artık "stinky" olarak sistemde dolaştığım için /home/stinky'e girebiliyorum.Bu path üzerinde biraz araştırma yaparken üçüncü flag'ımıda buldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/16.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha sonra bu geçerli path üzerinde aramaya devam ederken karşıma "mrderp ve stinky" nin konuştuğu bir metin geldi.Metinin içeriği şöyleydi.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/17.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Yukarıdaki metin'de packet capture ifadesini görünce "stinky" üzerinde .pcap uzantılı bir dosya arayıp buldum ve bunu python -m SimpleHTTPServer 9999 açıp kendi makinama almaya çalıştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/18.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Wireshark üzerinden pcap çıktısını incelediğimde "mrderp:derpderpderpderpderpderpderp" password'unu bulmuş oldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/19.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha sonra kullanıcı olarak "mrderp"'e girip ne yapabileceğimi öğrenmeye çalıştım."sudo -l" komutunu çalıştırdığımda bana aşağıdaki path'i gösterip bu path içerisinde adı "derpy" ile başlayan bir şeyi sudo ile çalıştırabileceğimi öğrendim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/21.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha sonra "derpy.sh ile başlayan bir script yazıp kendi bu sisteme tekrardan root reverse-shell almaya çalıştım."</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/22.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Kendi bilgisayarımda "nc -nvlp 9999" komutu ile belirlediğim port için bir server açıp dinlemeye bıraktım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/23.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha sonra "/root/Desktop" içiersinde son flag'ı bulup CTF'i başarı bir şekilde bitirdim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/3-Derpnstink/24.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="inner">
+					<blockquote>Herhangi bir tavsiyede , eksikte veya problem'de bana aşağıdan paylaştığım sosyal medya hesapları üzerinden ulaşabilirsiniz.</blockquote>
+				</div>
+
+
+			</section>
+
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="https://www.youtube.com/channel/UCu5NyREC0zwn76fnj7UlevA" class="icon fa-youtube"><span class="label">Facebook</span></a></li>
+				<li><a href="https://www.linkedin.com/in/erdemyildiz/" class="icon fa-linkedin"><span class="label">Dribbble</span></a></li>
+				<li><a href="https://github.com/ErdemStar" class="icon fa-github"><span class="label">Email</span></a></li>
+			</ul>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
