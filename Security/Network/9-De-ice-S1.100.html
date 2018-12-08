@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html lang="TR">
+
+<head>
+	<title>Toppo 1</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../../index.html">Anasayfa</a></h1>
+		</header>
+
+		<!-- Main -->
+		<article id="main">
+
+			<section class="wrapper style5">
+
+				<div class="inner">
+					<h2>Hoşgeldiniz</h2>
+					<p>Bugün sizlere DE-ICE s1.100 'in nasıl çözüldüğünü göstermek istiyorum.Bu CTF'deki amacımız hedef içersinde maaş'lar ile alakalı bir dosya bulup bunu okumak olacaktır.CTF hakkında daha fazla bilgiye ulaşmak için <a target="_blank" href="https://www.vulnhub.com/entry/de-ice-s1100,8/">tıklayınız</a>.</p>
+					<section>
+						<h4>Geçtiğimiz adımlar</h4>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<ul>
+									<li>Nmap ile açık port'ların tespiti</li>
+									<li>SSH Brute Force için wordlist hazırlama</li>
+									<li>Hydra ile SSH Brute Force saldırı(bbanter ve aadams için)</li>
+									<li>John ile root'un password'unu bulma işlemi</li>
+									<li>Openssl ile decrypt yapma</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Vulnhub üzerinde hedefin 192.168.1.100 static ip adresi aldığını öğrendim.Daha sonra nmap kullanarak hedef üzerinde çalışan servis ve portları buldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/9-De-ice-S1.100/1.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>80 port'unun açık olduğunu görünce ip adresini yazıp hedef üzerinde çalışan sayfaları inceledim.Burada kullanıcların e-posta adreslerinin olduğu bir sayfa ile karşılaştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/9-De-ice-S1.100/2.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha sonra CTF'de sıkışan arkadaşlar için bir kaç trick verilmiş bir sayfa ile karşılaştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/9-De-ice-S1.100/3.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Üzerinde e-posta adreslerinin buluduğu sayfayı kullanarak SSH Brute Force için kendime wordlist hazırladım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/9-De-ice-S1.100/4.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Oluşturduğum bu wordlist'i hydra'nın username ve password kısmına vererek SSH Brute Force saldırısı yaptım.Fotoğrafta görebileceğiniz gibi "username:banter , password:banter" adlı kullanıcıya ulaştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/9-De-ice-S1.100/5.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Hedefe "bbanter" olarak girdikten sonra sistem üzerinde biraz araştırma yaptım.Daha sonra var olan kullanıcların hangi grup'ta olduğunu görmek istedim.Burada "aadams" sudo komutu çalıştırabilen wheels adlı bir grupta olduğunu öğrendim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/9-De-ice-S1.100/6.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Bir sonraki adamını "aadams" adlı kullanıcının SSH Brute Force saldırı yaparak password'u öğrenmek oldu("username:aadams, password:nostradamus").</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/9-De-ice-S1.100/7.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha sonra "aadams" adlı kullanıcının sudo -l komutu ile neleri sudo yetkisi ile çalıştırdığını öğrendim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/9-De-ice-S1.100/8.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Sudo yetkisini kullanarak /etc/shadow ve /etc/passwd okuyup kendi makinam üzerine unshadow komutu ile john için uygun formata çevirdim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/9-De-ice-S1.100/9.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>John çıktısınıda görebileceğiniz gibi elimizde root'un password'u var.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/9-De-ice-S1.100/10.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Nmap taramısından sonra FTP portunun açık olduğunu öğrendim fakat bu protokol'le alakalı hedef üzerinde bir hata vardı.Kısacası FTP portu'na erişim yoktu.Root olduktan sonra /home/ftp path'ini buldum.Burada maaşlarla alakalı bir openssl ile encrypt edilmiş CTF'de bizden istenilen dosyayı buldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/9-De-ice-S1.100/11.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha önceki fotoğraflarda /etc/passwd dosyası içerisinde "Do not change password - will break FTP encryption" adlı yazıyı gördükten sonra elde ettiğim root şifresini bu dosyayı decrypt etmek için kullandım.Openssl ile en yaygın kullanılmış bir cipter ile bu dosyayı decrypt ettim.Bu işlemden sonra CTF'i başarıyla tamamladım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/9-De-ice-S1.100/13.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="inner">
+					<blockquote>Herhangi bir tavsiyede , eksikte veya problem'de bana aşağıdan paylaştığım sosyal medya hesapları üzerinden ulaşabilirsiniz.</blockquote>
+				</div>
+
+
+			</section>
+
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="https://www.youtube.com/channel/UCu5NyREC0zwn76fnj7UlevA" class="icon fa-youtube"><span class="label">Facebook</span></a></li>
+				<li><a href="https://www.linkedin.com/in/erdemyildiz/" class="icon fa-linkedin"><span class="label">Dribbble</span></a></li>
+				<li><a href="https://github.com/ErdemStar" class="icon fa-github"><span class="label">Email</span></a></li>
+			</ul>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
