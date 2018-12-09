@@ -1,0 +1,205 @@
+<!DOCTYPE HTML>
+<html lang="TR">
+
+<head>
+	<title>DE-ICE s1.120</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../../index.html">Anasayfa</a></h1>
+		</header>
+
+		<!-- Main -->
+		<article id="main">
+
+			<section class="wrapper style5">
+
+				<div class="inner">
+					<h2>Hoşgeldiniz</h2>
+					<p>Bugün sizlere DE-ICE s1.120'in nasıl çözüldüğünü göstermek istiyorum.Bu CTF'deki amacımız root olmak olacaktır.CTF hakkında daha fazla bilgiye ulaşmak için <a target="_blank" href="https://www.vulnhub.com/entry/de-ice-s1120,10/">tıklayınız</a>.</p>
+					<section>
+						<h4>Geçtiğimiz adımlar</h4>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<ul>
+									<li>Nmap ile açık port'ların tespiti</li>
+									<li>Dirb ile 80 portu üzerinden keşif yapma</li>
+									<li>Sqlmap ile username ve password bilgisin elde etme</li>
+									<li>Medusa ile SSH Brute Force saldırısı yapma</li>
+									<li>Bash-script ile reverse shell alma</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Vulnhub üzerinde hedefin 192.168.1.120 static ip adresi aldığını öğrendim.Daha sonra nmap kullanarak hedef üzerinde çalışan servis ve portları buldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/11-De-ice-S1.120/1.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/11-De-ice-S1.120/2.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Dirp ile 80 portu üzerinde ulaşabileceğim sayfaları/dosyaları bulmaya çalıştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/11-De-ice-S1.120/3.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Dirb çıksından resimde görülen bir sayfa elde ettim.Bu sayfada input'ları kendimce doldurdum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/11-De-ice-S1.120/4.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha sonra "View product" kısmıda bir önceki sayfada elde ettiğim bilgileri getirebildiğimi gördüm.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/11-De-ice-S1.120/5.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Eklediğim bilgileri getirdikten sonra url kısmınad 'php?id=1' bir kısmın olduğunu gördüm.Burada "SQL injection" açığı olup olmadığını kontrol etmek için meta kareter "'" işaretini ekledim ve hedefe böyle bir istek gönderdim.Bu işlemden sonra hedef bana boş bir sayfa gönderince "SQL injection" olduğunu öğrendim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/11-De-ice-S1.120/6.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Sqlmap ile hedef üzerinde çalışan DB üzerindeki username ve password'u getirmek istedim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/11-De-ice-S1.120/7.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/11-De-ice-S1.120/8.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Sqlmap çıktısını user-pass adlı bir dosyaya kaydettim daha sonra ise bu dosya içersinden sadece password ve username'leri ayırmak istedim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/11-De-ice-S1.120/9.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha sonra medusa ile elde ettiğim username ve password'lerin SSH Brute Force saldırısı için kullandım.Çıktıda'da görebileceğiniz gibi elde ettiğim her ayrı user bilgisiyle hedefe SSH ile bağlandığını öğrendim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/11-De-ice-S1.120/10.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Herhangi bir user bilgisi ile hedefe SSH'la bağlanıp hedef hakkında bilgi edinmeye çalıştım.Elimde yaklaşık 50'ye yakın username ve password vardı fakat hedef'ten elde ettiğim bilgiye göre /etc/group üzerinden "ccoffee" adlı user'ın admin grubuna ait olduğunu öğrendim.Bu bilgiden sonra artık aradığımı "ccoffee" üzerinden bulacağımı düşündüm.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/11-De-ice-S1.120/11.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>"ccoffee" adlı kullanıcı bilgisin kullanarak SSH olarak hedefe bağladım.Daha sonra "sudo -l" komutuyla hedefin root yetkisiyle çalıştırabileceği birşey olup olmadığını kontrol ederken fotoğrafda gördüğünüz path'deki "getlogs.sh" dosyasını root yetkisi ile çalıştırabileceğimi öğrendim.Bu scritp'i okumaya yetkim yoktu.Birkaç denemeden sonra "getlogs.sh" adlı dosyanın adını "getlogs.sh.old" yapıp tekrar kendim "getlogs.sh" dosyası oluşturdum.Bu dosya içerinde reverse komutu yerşeltirip sudo komutu ile çalıştırdım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/11-De-ice-S1.120/13.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Bu işlemden sonra hedef üzerinden root olduğumu aşağıdaki fotoğrandan görebilirsiniz :)</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/11-De-ice-S1.120/14.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="inner">
+					<blockquote>Herhangi bir tavsiyede , eksikte veya problem'de bana aşağıdan paylaştığım sosyal medya hesapları üzerinden ulaşabilirsiniz.</blockquote>
+				</div>
+
+
+			</section>
+
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="https://www.youtube.com/channel/UCu5NyREC0zwn76fnj7UlevA" class="icon fa-youtube"><span class="label">Facebook</span></a></li>
+				<li><a href="https://www.linkedin.com/in/erdemyildiz/" class="icon fa-linkedin"><span class="label">Dribbble</span></a></li>
+				<li><a href="https://github.com/ErdemStar" class="icon fa-github"><span class="label">Email</span></a></li>
+			</ul>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
