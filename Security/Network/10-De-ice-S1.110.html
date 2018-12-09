@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html lang="TR">
+
+<head>
+	<title>DE-ICE s1.110</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../../index.html">Anasayfa</a></h1>
+		</header>
+
+		<!-- Main -->
+		<article id="main">
+
+			<section class="wrapper style5">
+
+				<div class="inner">
+					<h2>Hoşgeldiniz</h2>
+					<p>Bugün sizlere DE-ICE s1.110'in nasıl çözüldüğünü göstermek istiyorum.Bu CTF'deki amacımız bir önceki DE-ICE s1.100 bloğundaki gibi hedef içersinde maaş'lar ile alakalı bir dosya bulup bunu okumak olacaktır.CTF hakkında daha fazla bilgiye ulaşmak için <a target="_blank" href="https://www.vulnhub.com/entry/de-ice-s1110,9/">tıklayınız</a>.</p>
+					<section>
+						<h4>Geçtiğimiz adımlar</h4>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<ul>
+									<li>Nmap ile açık port'ların tespiti</li>
+									<li>Dirb ile 80 portu üzerinden keşif yapma</li>
+									<li>Wget ile FTP server üzerinden dosya indirme</li>
+									<li>John ile password kırma işlemi</li>
+									<li>Openssl ile decrypt yapma</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Vulnhub üzerinde hedefin 192.168.1.110 static ip adresi aldığını öğrendim.Daha sonra nmap kullanarak hedef üzerinde çalışan servis ve portları buldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/10-De-ice-S1.110/1.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/10-De-ice-S1.110/2.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Dirp ile 80 portu üzerinde ulaşabileceğim sayfaları/dosyaları bulmaya çalıştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/10-De-ice-S1.110/3.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Dirb çıktısından birşey elde edemediğim için Ftp portu üzerinden işlem yapmak istedim.Nmap çıktısından'da görebildiğimiz gibi Ftp server'a username:anonymous olarak bağlanabildiğimi gördüm.Ftp üzerindeki dosyaları incelemek üzere wget komutu ile kendi makinama indirdim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/10-De-ice-S1.110/4.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>İndirme işlemi tamamlandıktan sonra dosya içersinde shadow adlı bir dosya buldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/10-De-ice-S1.110/5.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Shadow adlı dosyayı john için uygun formata çevirdikten sonra john ile root'un password'unu öğrenmeye çalıştım.Fakat hedefe root ile SSH portu üzerinden bağlanmaya çalışınca bir sonuç alamadım.(username:root , password:toor)</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/10-De-ice-S1.110/6.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Dosya içersinde aramaya devam ederken passwd adlı bir dosya ile karşılaştım.Fakat buradan işime yarar birşey elde edemedim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/10-De-ice-S1.110/7.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Aradığım şeyin FTP server'dan indirdiğim dosyalar arasında olduğunu biliyordum bu yüzden aramaya devam ettim.Biraz daha araştırmanın ardından "core" adlı bir dosyanın içersinden fotoğrafdaki bilgileri elde ettim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/10-De-ice-S1.110/8.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Elde ettiğim bilgileri yeni bir dosyaya kopyalayıp john için uygun bir formatta hazırladım.Daha sonra john ile bbanter ve root'un password'una ulaştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/10-De-ice-S1.110/9.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>SSH ile doğrudan root'a bağlanamadım bende burada bbanter ile bağlanıp hedef üzerinde "su root" komutu ile root oldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/10-De-ice-S1.110/10.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Artık hedef üzerinden maaş'lar ile alakalı bir dosya aradım ve şöyle bir path buldum.Burada 'customer_account.csv.enc' adlı aradığım encrypt'lenmiş dosyayı buldum.Daha sonra copy.sh adlı script'i okudum.Bu script amacı bir dosyayı openssl kullanılarak , script içerside verilen bir path'deki dosya içersisinde yazılan bir password ile encrypt etmek olduğunu öğrendim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/10-De-ice-S1.110/11.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Bir sonraki adımda bu dosya içersinde yazılan password için kullanılan metni okumak oldu.Bu işlemden sonra openssl ile "customer_account.csv.enc"'yi decrypt ederek CTF'i başarıyla tamamladım :)</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/10-De-ice-S1.110/13.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="inner">
+					<blockquote>Herhangi bir tavsiyede , eksikte veya problem'de bana aşağıdan paylaştığım sosyal medya hesapları üzerinden ulaşabilirsiniz.</blockquote>
+				</div>
+
+
+			</section>
+
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="https://www.youtube.com/channel/UCu5NyREC0zwn76fnj7UlevA" class="icon fa-youtube"><span class="label">Facebook</span></a></li>
+				<li><a href="https://www.linkedin.com/in/erdemyildiz/" class="icon fa-linkedin"><span class="label">Dribbble</span></a></li>
+				<li><a href="https://github.com/ErdemStar" class="icon fa-github"><span class="label">Email</span></a></li>
+			</ul>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
