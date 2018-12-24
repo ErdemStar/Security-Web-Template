@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<html lang="tr">
+
+<head>
+	<title>Kioptrix Level 1</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../../index.html">Anasayfa</a></h1>
+		</header>
+
+		<!-- Main -->
+		<article id="main">
+
+			<section class="wrapper style5">
+
+				<div class="inner">
+					<h2>Hoşgeldiniz</h2>
+					<p>Bugün sizlere Kioptrix Level 1'in nasıl çözüldüğünü göstermek istiyorum.Bu CTF'deki amacımız root olmak olacaktır.CTF hakkında daha fazla bilgiye ulaşmak için <a target="_blank" href="https://www.vulnhub.com/entry/kioptrix-level-1-1,22/">tıklayınız</a>.</p>
+					<section>
+						<h4>Geçtiğimiz adımlar</h4>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<ul>
+									<li>Netdiscover ile hedef'in ip adresini öğrenme</li>
+									<li>Nmap ile açık port'ların tespiti</li>
+									<li>Msfconsole ile hedefin Samba server version bilgisini elde etme</li>
+									<li>Samba ile ilgili bir exploit bulup root olma</li>
+									<li>Dirb ile 80 portu üzerinden keşif yapma</li>
+									<li>Nikto ile 80 portu üzerinden keşif yapma</li>
+									<li>Hedef üzerinden reverse-shell alma</li>
+									<li>Openssl ile ilgili bir exploit bulup root olma</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Hedefin kullandığı ip adresini netdiscoveri ile bularak CTF'imize giriş yapıyoruz.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/15-Kioptrix-1/1.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha sonra nmap ile hedef üzerinden port/servis bilgisi elde etmeye çalıştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/15-Kioptrix-1/2.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/15-Kioptrix-1/3.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Hedef üzerinde SMB servisi açıktı fakat ben bu servisi nmap ile öğrenememiştim.Burada msfconsole ile bu servisin ne olduğunu öğrendim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/15-Kioptrix-1/4.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<hr />
+					<h2>Çözüm 1</h2>
+					<p>Bu servisi biraz googling yaparak araştırtırdığımda bu servisle ilgili olabilecek bir exploit buldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/15-Kioptrix-1/5.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha sonra gerekli parametreleri verdiğimde hedef üzerinde root oldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/15-Kioptrix-1/6.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<hr />
+					<h2>Çözüm 2</h2>
+					<p>Hedef üzerinden 80 portu hakkında daha fazla bilgi elde etmek için dirb'i kullandım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/15-Kioptrix-1/7.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>80 portu üzerinde daha fazla bilgi etmek için dirbe ek olarak nikto adlı tool'u kullandım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/15-Kioptrix-1/8.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Nikto çıktısından elde ettiği "mode_ssl 2.8.4" bilgisine göre exploit aradığımda karşıma fotoğraftaki gibi bir github repository'isi çıktı.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/15-Kioptrix-1/9.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Bu exploiti indirdikten sonra bu exploitin sağlıklı çalışması için fotoğrafdaki anlatılan adımları uyguladım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/15-Kioptrix-1/10.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Exploit için gerekenleri kurduktan sonra gerekli parametreleri verip exploit'i çalıştırdım.Bu işlem sonucunda hedefe root oldum.Bu adımda CTF'i başarıyla tamamladım :)<p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/15-Kioptrix-1/11.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/15-Kioptrix-1/12.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="inner">
+ 					<blockquote>Herhangi bir tavsiyede , eksikte veya problem'de bana aşağıdan paylaştığım sosyal medya hesapları üzerinden ulaşabilirsiniz.</blockquote>
+ 				</div>
+
+
+			</section>
+
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="https://www.youtube.com/channel/UCu5NyREC0zwn76fnj7UlevA" class="icon fa-youtube"><span class="label">Facebook</span></a></li>
+				<li><a href="https://www.linkedin.com/in/erdemyildiz/" class="icon fa-linkedin"><span class="label">Dribbble</span></a></li>
+				<li><a href="https://github.com/ErdemStar" class="icon fa-github"><span class="label">Email</span></a></li>
+			</ul>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
