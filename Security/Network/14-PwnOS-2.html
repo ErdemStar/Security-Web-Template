@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html lang="TR">
+
+<head>
+	<title>PwnOS 2</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../../index.html">Anasayfa</a></h1>
+		</header>
+
+		<!-- Main -->
+		<article id="main">
+
+			<section class="wrapper style5">
+
+				<div class="inner">
+					<h2>Hoşgeldiniz</h2>
+					<p>Bugün sizlere PwnOS-2'in nasıl çözüldüğünü göstermek istiyorum.Bu CTF'deki amacımız root olmak olacaktır.CTF hakkında daha fazla bilgiye ulaşmak için <a target="_blank" href="https://www.vulnhub.com/entry/pwnos-20-pre-release,34/">tıklayınız</a>.</p>
+					<section>
+						<h4>Geçtiğimiz adımlar</h4>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<ul>
+									<li>Nmap ile açık port'ların tespiti</li>
+									<li>Dirb ile 80 portu üzerinden keşif yapma</li>
+									<li>Perl ile hedef üzerinde web tabanlı user:password kaydı oluşturma</li>
+									<li>Hedef üzerinden reverse-shell alma</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Hedefin 10.10.10.100 - 255.255.255.0 static ip adresini kullandığını vulnhub üzerinden öğrendikten sonra vakit kaybetmeden doğrudan nmap taramasıyla işe başladım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/14-PwnOS-2/1.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Dirp ile 80 portu üzerinde ulaşabileceğim sayfaları/dosyaları bulmaya çalıştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/14-PwnOS-2/2.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Bulduğum sayfalar üzerinde araştırma yaparken 80 portu üzerinde "Simple PHP Blog 0.4.0" adlı bir uygulama çalıştığını öğrendim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/14-PwnOS-2/3.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Fotoğrafda görebileceğiniz gibi bulduğum bu ad ile başlayan bir exploit olup olmadığını araştırdım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/14-PwnOS-2/4.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Searchsploit üzerinde gördüğüm perl script'ini fotoğrafda görebileceğiniz parametreler'le çalıştırarak hedef site üzerinde "erdem:star" adlı bir kullanıcı açtım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/14-PwnOS-2/5.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Burada hedef uygulama üzerine reverse-shell.php script'ini yüklemek için geçerli bir path keşfettim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/14-PwnOS-2/6.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Yüklediğim bu script hedef üzerinde fotoğrafdaki path'e yüklendiğini keşfettim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/14-PwnOS-2/7.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha sonra hedef üzerindeki reverse-shell script'ini çalıştırarak hedeften shell aldım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/14-PwnOS-2/8.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Hedef üzerinde araştırma yaparken "mysqli_connect.php" adlı bir dosya buldum.Dosya içersindeki veriler aşağıdaki fotoğrafdaki gibidir.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/14-PwnOS-2/9.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Diğer CTF'lerden elde ettiğim deneyimlerden her nezaman bir mysql "root:passwd" bulsam hedef üzerinden "su root" komutu ile deneyip mysql password'unun root ile aynı olup olmadığının kontrol'ünü yaparım.Burada'da aynı işlemi yaptığımda hedef üzerinde root oldum.Bu adımdan sonra CTF'i başarı birşekilde bitirim :)</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/14-PwnOS-2/10.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="inner">
+ 					<blockquote>Herhangi bir tavsiyede , eksikte veya problem'de bana aşağıdan paylaştığım sosyal medya hesapları üzerinden ulaşabilirsiniz.</blockquote>
+ 				</div>
+
+
+			</section>
+
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="https://www.youtube.com/channel/UCu5NyREC0zwn76fnj7UlevA" class="icon fa-youtube"><span class="label">Facebook</span></a></li>
+				<li><a href="https://www.linkedin.com/in/erdemyildiz/" class="icon fa-linkedin"><span class="label">Dribbble</span></a></li>
+				<li><a href="https://github.com/ErdemStar" class="icon fa-github"><span class="label">Email</span></a></li>
+			</ul>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
