@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html lang="tr">
+
+<head>
+	<title>Kioptrix Level 3</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../../index.html">Anasayfa</a></h1>
+		</header>
+
+		<!-- Main -->
+		<article id="main">
+
+			<section class="wrapper style5">
+
+				<div class="inner">
+					<h2>Hoşgeldiniz</h2>
+					<p>Bugün sizlere Kioptrix Level 3'in nasıl çözüldüğünü göstermek istiyorum.Bu CTF'deki amacımız root olmak olacaktır.CTF hakkında daha fazla bilgiye ulaşmak için <a target="_blank" href="https://www.vulnhub.com/entry/kioptrix-level-12-3,24/">tıklayınız</a>.</p>
+					<section>
+						<h4>Geçtiğimiz adımlar</h4>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<ul>
+									<li>Netdiscover ile hedef'in ip adresini öğrenme</li>
+									<li>Nmap ile açık port'ların tespiti</li>
+									<li>Dirb ile 80 port üzerinde keşif yapma</li>
+									<li>SQL Injection keşfetme</li>
+									<li>Msfconsole ile hedefe shell olma</li>
+									<li>Hedef'te çalıştırılan bir exploit ile root olma</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Hedefin kullandığı ip adresini netdiscoveri ile bularak CTF'imize giriş yapıyoruz.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/17-Kioptrix-3/1.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Vulnhub'dan okuduğum kadarıyla hedefin ip adresini bulduktan sonra kendi makinamıza bir host kaydı girmemiz istenmiş.Bu işlem aşağıdaki fotoğradaki gibidir.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/17-Kioptrix-3/2.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha sonra nmap ile hedef üzerinden port/servis bilgisi elde etmeye çalıştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/17-Kioptrix-3/3.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>80 port üzerinden bilgi toplamak için dirb'i kullandım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/17-Kioptrix-3/4.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Elde ettiğim dirb çıktısı üzerinden işlem yaparken fotoğrafdaki gibi bir sayfa ve URL ile karşılaştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/17-Kioptrix-3/5.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha sonra URL üzerinde birkaç meta karekter koyup basit bir şekilde hedef üzerinden SQL Injection aradım.Bu denemelerimin meyvesini toplayarak hedef'de SQL Injection olduğunu keşfettim.Fakat sqlmap ile hedef üzerinde işlem yaparken kullanışlı bilgiler elde edemedim.</p>
+					<p></p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/17-Kioptrix-3/6.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Hedef üzerinde login adlı bir sayfa vardı.Bu sayfanın kaynak kodlarını görüntülediğimde LotusCMS adlı birşeylerin yazdığını gördüm.Daha sonra bu keywordu google'da araştırdıktan sonra msfconsole üzerinde bu adla ilgili bir exploit olabilecğeini keşfettim.Fotoğrafta bu exploit çalışması için gerekli parameterleri verdim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/17-Kioptrix-3/7.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Exploit'i çalıştırdıktan sonra hedef üzerinden shell aldım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/17-Kioptrix-3/8.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Hedef üzerinden işime yarar birşeyler bulamadığım için son çare olarak hedef OS versiyonu'na göre bir exploit aradım.40839.c adlı bir exploit bulup çalışması için gerekli işlemleri yaptım.(Bu exploit arka planda root yetkisinde "firefart" adlı bir user oluşturup sizden bir pasword istiyor.Bu işlemden sonra hedefe "firefart" ile ssh bağlandığınızda root olduğunuzu göreceksiniz.)</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/17-Kioptrix-3/9.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Hedefe SSH ile bağlandığımda artık root olabildim.Bu adıman sonra bir CTF daha başarıyla bitti :)</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/17-Kioptrix-3/10.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+			<div class="inner">
+ 					<blockquote>Herhangi bir tavsiyede , eksikte veya problem'de bana aşağıdan paylaştığım sosyal medya hesapları üzerinden ulaşabilirsiniz.</blockquote>
+ 				</div>
+
+
+			</section>
+
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="https://www.youtube.com/channel/UCu5NyREC0zwn76fnj7UlevA" class="icon fa-youtube"><span class="label">Facebook</span></a></li>
+				<li><a href="https://www.linkedin.com/in/erdemyildiz/" class="icon fa-linkedin"><span class="label">Dribbble</span></a></li>
+				<li><a href="https://github.com/ErdemStar" class="icon fa-github"><span class="label">Email</span></a></li>
+			</ul>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>

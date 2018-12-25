@@ -2605,6 +2605,22 @@ input, select, textarea {
 				background-color: rgba(0, 0, 0, 0.105);
 			}
 
+			.features li:nth-child(17) {
+				background-color: rgba(0, 0, 0, 0.105);
+			}
+
+			.features li:nth-child(18) {
+				background-color: rgba(0, 0, 0, 0.200);
+			}
+
+			.features li:nth-child(19) {
+				background-color: rgba(0, 0, 0, 0.200);
+			}
+
+			.features li:nth-child(20) {
+				background-color: rgba(0, 0, 0, 0.105);
+			}
+
 
 
 
