@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<html lang="tr">
+
+<head>
+	<title>Metasploitable 2</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../../index.html">Anasayfa</a></h1>
+		</header>
+
+		<!-- Main -->
+		<article id="main">
+
+			<section class="wrapper style5">
+
+				<div class="inner">
+					<h2>Hoşgeldiniz</h2>
+					<p>Bugün sizlere Metasploitable 2'in nasıl çözüldüğünü göstermek istiyorum.Bu CTF'deki amacımız  hedef üzerinde var olan birden fazla açıkları keşfetmektir.CTF hakkında daha fazla bilgiye ulaşmak için <a target="_blank" href="https://www.vulnhub.com/entry/metasploitable-2,29/">tıklayınız</a>.</p>
+					<section>
+						<h4>Geçtiğimiz adımlar</h4>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<ul>
+									<li>Netdiscover ile hedef'in ip adresini öğrenme</li>
+									<li>Nmap ile açık port'ların tespiti</li>
+									<li>Msfconsole ile birden fazla servis üzerinden shell alma</li>
+									<li>Hydra ile Brute force saldırıları</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Hedefin ip adresini Netdiscover ile belirledikten sonra Nmap kullanarak hedef hakkında bilgi toplayarak hareket ettim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/19-Metasploitable-2/1.png" alt="" /></span></div>
+						</div>
+					</div>
+
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/19-Metasploitable-2/2.png" alt="" /></span></div>
+						</div>
+					</div>
+
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/19-Metasploitable-2/3.png" alt="" /></span></div>
+						</div>
+					</div>
+
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/19-Metasploitable-2/4.png" alt="" /></span></div>
+						</div>
+					</div>
+
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/19-Metasploitable-2/5.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Hedef üzerinde rastgele exploit ararken Msfconsole ile aşağıdaki fotoğrafdaki exploit'i kullanarak shell aldım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/19-Metasploitable-2/6.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="inner">
+					<p>Elimde bir wordlist olmasını için açık olan SMB portuna Enum4linux tool'u kullanarak username bilgisi almaya çalıştım.Daha sonra "cut" komutu kullanarak düzgün bir formata çevirdim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/19-Metasploitable-2/7.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Aramaya devam ederken Smb üzerinde var olan bir exploit'i Msfconsole'la keşfedip shell aldım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/19-Metasploitable-2/8.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha sonra 1099 portu üzerinde çalışan Java server'la alakalı bir exploit bulup shell aldım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/19-Metasploitable-2/9.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>1524 portu ile alakalı birşey bulamadım daha sonra Telnet ile bağlanmayı denediğimde root olabildiğimi gördüm.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/19-Metasploitable-2/10.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="inner">
+					<p>Aynı şekilde 3632 portu üzerinde çalışan server ile alakalı araştırma yaptığımda Msfconsole üzerinde bir exploit olduğunu keşfedip , Msfconsole'u kullanarak shell aldım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/19-Metasploitable-2/11.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="inner">
+					<p>8787 portu üzerinde çalışan server ile alakalı araştırma yaptığımda Msfconsole üzerinde bir exploit olduğunu keşfedip , Msfconsole'u kullanarak shell aldım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/19-Metasploitable-2/12.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="inner">
+					<p>Son olarak 58295 portu üzerinde bir başka Java serveri olduğunu öğrenip Msfconsole kullanıp shell aldım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/19-Metasploitable-2/13.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="inner">
+					<p>Daha öncelerde elde ettiğim wordlist'i Hydra ile FTP Brute Force yaparak elde ettiğim username-password'leri göstermek istedim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/19-Metasploitable-2/14.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="inner">
+					<p>Aynı şekilde Hydra ile SSH Brute Force yaparak elde ettiğim username-password'leri göstermek istedim.Bu adımdan sonra fazla abartmayarak CTF'i sonlandırmış oldum :)</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/19-Metasploitable-2/15.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+			<div class="inner">
+ 					<blockquote>Herhangi bir tavsiyede , eksikte veya problem'de bana aşağıdan paylaştığım sosyal medya hesapları üzerinden ulaşabilirsiniz.</blockquote>
+ 				</div>
+
+
+			</section>
+
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="https://www.youtube.com/channel/UCu5NyREC0zwn76fnj7UlevA" class="icon fa-youtube"><span class="label">Facebook</span></a></li>
+				<li><a href="https://www.linkedin.com/in/erdemyildiz/" class="icon fa-linkedin"><span class="label">Dribbble</span></a></li>
+				<li><a href="https://github.com/ErdemStar" class="icon fa-github"><span class="label">Email</span></a></li>
+			</ul>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
