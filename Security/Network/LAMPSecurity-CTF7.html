@@ -2,7 +2,7 @@
 <html lang="tr">
 
 <head>
-	<title>LAMPSecurity CTF5</title>
+	<title>LAMPSecurity CTF7</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="../../assets/css/main.css" />
@@ -26,7 +26,7 @@
 
 				<div class="inner">
 					<h2>Hoşgeldiniz</h2>
-					<p>Bugün sizlere LAMPSecurity CTF5'ün nasıl çözüldüğünü göstermek istiyorum.Bu CTF'deki amacımız hedefe sızıp root olmaktır.CTF hakkında daha fazla bilgiye ulaşmak için <a target="_blank" href="https://www.vulnhub.com/entry/lampsecurity-ctf5,84/">tıklayınız</a>.</p>
+					<p>Bugün sizlere LAMPSecurity CTF7'ün nasıl çözüldüğünü göstermek istiyorum.Bu CTF'deki amacımız hedefe sızıp root olmaktır.CTF hakkında daha fazla bilgiye ulaşmak için <a target="_blank" href="https://www.vulnhub.com/entry/lampsecurity-ctf7,86/">tıklayınız</a>.</p>
 					<section>
 						<h4>Geçtiğimiz adımlar</h4>
 						<div class="row">
@@ -36,7 +36,7 @@
 									<li>Nmap ile açık port'ların tespiti</li>
 									<li>Dirb ile 80 portu üzerinde arama yapma</li>
 									<li>Nikto ile hedef hakkında bilgi elde etme</li>
-									<li>NanoCMS ile ilgili geçerli bir exploit</li>
+									<li>SQL Login Bypass</li>
 									<li>Hedef üzerinden PHP Reverse Shell alma </li>
 								</ul>
 							</div>
@@ -49,7 +49,7 @@
 					<p>İlk adımda netdiscover komutu ile hedefin kulladığı IP adresini tespit ettim.</p>
 					<div class="box alt">
 						<div class="row gtr-50 gtr-uniform">
-							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/1.png" alt="" /></span></div>
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/23-CTF7/1.png" alt="" /></span></div>
 						</div>
 					</div>
 				</div>
@@ -59,29 +59,22 @@
 					<p>Nmap kullanarak hedef üzerinde çalışan servis ve portları buldum.</p>
 					<div class="box alt">
 						<div class="row gtr-50 gtr-uniform">
-							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/2.png" alt="" /></span></div>
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/23-CTF7/2.png" alt="" /></span></div>
 						</div>
 					</div>
 
 					<div class="box alt">
 						<div class="row gtr-50 gtr-uniform">
-							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/3.png" alt="" /></span></div>
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/23-CTF7/3.png" alt="" /></span></div>
 						</div>
 					</div>
-
-					<div class="box alt">
-						<div class="row gtr-50 gtr-uniform">
-							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/4.png" alt="" /></span></div>
-						</div>
-					</div>
-				</div>
 
 				<!-- image -->
 				<div class="inner">
 					<p>80 portu üzerinden gizlenmiş yada var olan yolları bulmak için dirb'i kullandım.</p>
 					<div class="box alt">
 						<div class="row gtr-50 gtr-uniform">
-							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/5.png" alt="" /></span></div>
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/23-CTF7/4.png" alt="" /></span></div>
 						</div>
 					</div>
 				</div>
@@ -91,100 +84,87 @@
 					<p>Dirb çıktısının tek başına yettiğini düşünmediğim için ve nikto ile hedefin 80 portu hakkında daha fazla bilgi edimeye devam ettim.</p>
 					<div class="box alt">
 						<div class="row gtr-50 gtr-uniform">
-							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/6.png" alt="" /></span></div>
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/23-CTF7/5.png" alt="" /></span></div>
 						</div>
 					</div>
 				</div>
 
 				<!-- image -->
 				<div class="inner">
-					<p>CTF4'deki gibi burada Null Byte LFI açığı tespit ettim.</p>
+					<p>80 portu hakkında bilgi edinme işlemi bittikten sonra artık manuel olarak birşeyler arama vakti geldi.Burada size 80 portu üzerine bizi karşılayan sayfayı göstermek istedim.</p>
 					<div class="box alt">
 						<div class="row gtr-50 gtr-uniform">
-							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/7.png" alt="" /></span></div>
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/23-CTF7/6.png" alt="" /></span></div>
 						</div>
 					</div>
 				</div>
 
 				<!-- image -->
 				<div class="inner">
-					<p>Dirb ve Nikto'dan elde ettiğim Path'leri karıştırırken fotoğrafta gördüğünüz gibi bir ekran ile karşılaştım.Web tabanlı kaynak kodlarına baktığımda NanoCMS adlı birkaç kelime gözüme takıldı.</p>
+					<p>80 portu üzerine işe yarar birşey bulamayınca 8080 portu üzerinde birşeyler aramaya devam ettim."Login.php" akranını görünce SQL Login bypass yapmaya çalıştım ve sonuç aldım.</p>
 					<div class="box alt">
 						<div class="row gtr-50 gtr-uniform">
-							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/8.png" alt="" /></span></div>
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/23-CTF7/7.png" alt="" /></span></div>
 						</div>
 					</div>
 				</div>
 
 				<!-- image -->
 				<div class="inner">
-					<p>Internette NanoCMS hakkında araştırma yaptıktan sonra fotoğrafta gösterilen Path'e gittiğimde username ve password bilgisini hash'li bulabileceğimi öğrendim.</p>
+					<p>80 portunda çalışan uygulamaya birşey ekleyebileceğim bir path buldum.</p>
 					<div class="box alt">
 						<div class="row gtr-50 gtr-uniform">
-							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/9.png" alt="" /></span></div>
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/23-CTF7/8.png" alt="" /></span></div>
 						</div>
 					</div>
 				</div>
 
 				<!-- image -->
 				<div class="inner">
-					<p>Gerçekten'de böyle bir açığın hedef üzerinde olduğunu öğrendim.Fotoğrafta'da sizlere bizim için önemli alanları işaretleyerek gösterdim.</p>
+					<p>Yeni bir reading için benden bilgiler ekleyen bir sayfayla karşılaştım.Burada hedefe PHP Reverse Shell script'i ekleyerek devam ettim.</p>
 					<div class="box alt">
 						<div class="row gtr-50 gtr-uniform">
-							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/10.png" alt="" /></span></div>
-						</div>
-					</div>
-				</div>
-
-
-				<!-- image -->
-				<div class="inner">
-					<p>Password'u decode ettim.</p>
-					<div class="box alt">
-						<div class="row gtr-50 gtr-uniform">
-							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/11.png" alt="" /></span></div>
-						</div>
-					</div>
-				</div>
-
-
-				<!-- image -->
-				<div class="inner">
-					<p>Bu işlemden sonra hedefe login olabildim.Fotoğrafta url'e baktığınızda hedefin php ile oluşturulduğunu anlayabiliriz.Bende hedef üzerinde PHP Reverse Shell ekleyerek hedef üzerinden shell almaya çalıştım.</p>
-					<div class="box alt">
-						<div class="row gtr-50 gtr-uniform">
-							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/12.png" alt="" /></span></div>
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/23-CTF7/9.png" alt="" /></span></div>
 						</div>
 					</div>
 				</div>
 
 				<!-- image -->
 				<div class="inner">
-					<p>Burada içersine PHP Reverse Shell eklediğim sayfayı tektikledim.</p>
+					<p>Her eklediğim sayfa  80 port üzerinde yer alacağı için dirb'den elde ettiğim path'leri kontrol ettiğimde upload ettiğim PHP script'inin yolunu buldum ve tıklayarak tetikledim.</p>
 					<div class="box alt">
 						<div class="row gtr-50 gtr-uniform">
-							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/13.png" alt="" /></span></div>
-						</div>
-					</div>
-				</div>
-
-
-				<!-- image -->
-				<div class="inner">
-					<p>Daha önceden nc ile bir listener açmıştım , burada hedeften shell aldığımı size gösterdim.</p>
-					<div class="box alt">
-						<div class="row gtr-50 gtr-uniform">
-							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/14.png" alt="" /></span></div>
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/23-CTF7/10.png" alt="" /></span></div>
 						</div>
 					</div>
 				</div>
 
 				<!-- image -->
 				<div class="inner">
-					<p>Biraz araştırma yaptıktan sonra hedef üzerinde tüm Path'lere deki dosyaları okuyup içersinde pass kelimesi geçenleri grep kullanarak bana getir şekline bir komut yazdım.</p>
+					<p>Daha önceden çalıştırdığım netcat listener üzerinden shell aldım.</p>
 					<div class="box alt">
 						<div class="row gtr-50 gtr-uniform">
-							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/15.png" alt="" /></span></div>
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/23-CTF7/11.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>/var/www/html üzerinde işime yaracak bilgiler elde ettmeyi umdum.Daha sonra MySQL'e root password'u olmadan login olabileceğimi öğrendim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/23-CTF7/12.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Resimde'de gösterdiğim gibi username ve password bilgilerine MySQL üzerinden ulaştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/23-CTF7/13.png" alt="" /></span></div>
 						</div>
 					</div>
 				</div>
@@ -192,15 +172,23 @@
 
 				<!-- image -->
 				<div class="inner">
-					<p>Elde ettiğim çıktıları inceleyince root password'nunu 50$cent olduğunu öğrendim.Bu işlemden sonra CTF başarıyla bitirdim.</p>
+					<p>Bu adımda elde ettiğim anlamsız password'leri decode ettim.</p>
 					<div class="box alt">
 						<div class="row gtr-50 gtr-uniform">
-							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/16.png" alt="" /></span></div>
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/23-CTF7/14.png" alt="" /></span></div>
 						</div>
 					</div>
 				</div>
 
-
+				<!-- image -->
+				<div class="inner">
+					<p>Elde ettiğim clear text password'lerden sonra hedefe SSH kullanarak "brian:my2cents" ile login oldum.Daha sonra brain'in hedef üzerindeki yetkilerini öğrendiknte sonra rool alabileceğini anladım.Bu adımdan sonra root olup CTF'i başarıyla bitirdim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/23-CTF7/15.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
 
 				<div class="inner">
 					<blockquote>Herhangi bir tavsiyede , eksikte veya problem'de bana aşağıdan paylaştığım sosyal medya hesapları üzerinden ulaşabilirsiniz.</blockquote>
