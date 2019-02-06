@@ -1,0 +1,236 @@
+<!DOCTYPE HTML>
+<html lang="tr">
+
+<head>
+	<title>LAMPSecurity CTF5</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../../index.html">Anasayfa</a></h1>
+		</header>
+
+		<!-- Main -->
+		<article id="main">
+
+			<section class="wrapper style5">
+
+				<div class="inner">
+					<h2>Hoşgeldiniz</h2>
+					<p>Bugün sizlere LAMPSecurity CTF5'ün nasıl çözüldüğünü göstermek istiyorum.Bu CTF'deki amacımız hedefe sızıp root olmaktır.CTF hakkında daha fazla bilgiye ulaşmak için <a target="_blank" href="https://www.vulnhub.com/entry/lampsecurity-ctf5,84/">tıklayınız</a>.</p>
+					<section>
+						<h4>Geçtiğimiz adımlar</h4>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<ul>
+									<li>Netdiscover ile IP adresi tespiti</li>
+									<li>Nmap ile açık port'ların tespiti</li>
+									<li>Dirb ile 80 portu üzerinde arama yapma</li>
+									<li>Nikto ile hedef hakkında bilgi elde etme</li>
+									<li>NanoCMS ile ilgili geçerli bir exploit</li>
+									<li>PHP Reverse Shell alma</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>İlk adımda netdiscover komutu ile hedefin kulladığı IP adresini tespit ettim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/1.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Nmap kullanarak hedef üzerinde çalışan servis ve portları buldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/2.png" alt="" /></span></div>
+						</div>
+					</div>
+
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/3.png" alt="" /></span></div>
+						</div>
+					</div>
+
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/4.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>80 portu üzerinden gizlenmiş yada var olan yolları bulmak için dirb'i kullandım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/5.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Dirb çıktısının tek başına yettiğini düşünmediğim için ve nikto ile hedefin 80 portu hakkında daha fazla bilgi edimeye devam ettim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/6.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>CTF4'deki gibi burada Null Byte LFI açığı tespit ettim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/7.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Dirb ve Nikto'dan elde ettiğim Path'leri karıştırırken fotoğrafta gördüğünüz gibi bir ekran ile karşılaştım.Web tabanlı kaynak kodlarına baktığımda NanoCMS adlı birkaç kelime gözüme takıldı.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/8.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Internette NanoCMS hakkında araştırma yaptıktan sonra fotoğrafta gösterilen Path'e gittiğimde username ve password bilgisini hash'li bulabileceğimi öğrendim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/9.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Gerçekten'de böyle bir açığın hedef üzerinde olduğunu öğrendim.Fotoğrafta'da sizlere bizim için önemli alanları işaretleyerek gösterdim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/10.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+
+				<!-- image -->
+				<div class="inner">
+					<p>Password'u decode ettim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/11.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+
+				<!-- image -->
+				<div class="inner">
+					<p>Bu işlemden sonra hedefe login olabildim.Fotoğrafta url'e baktığınızda hedefin php ile oluşturulduğunu anlayabiliriz.Bende hedef üzerinde PHP Reverse Shell ekleyerek hedef üzerinden shell almaya çalıştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/12.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Burada içersine PHP Reverse Shell eklediğim sayfayı tektikledim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/13.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha önceden nc ile bir listener açmıştım , burada hedeften shell aldığımı size gösterdim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/14.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Biraz araştırma yaptıktan sonra hedef üzerinde tüm Path'lere deki dosyaları okuyup içersinde pass kelimesi geçenleri grep kullanarak bana getir şekline bir komut yazdım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/15.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+
+				<!-- image -->
+				<div class="inner">
+					<p>Elde ettiğim çıktıları inceleyince root password'nunu 50$cent olduğunu öğrendim.Bu işlemden sonra CTF başarıyla bitirdim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/22-CTF5/16.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="inner">
+					<blockquote>Herhangi bir tavsiyede , eksikte veya problem'de bana aşağıdan paylaştığım sosyal medya hesapları üzerinden ulaşabilirsiniz.</blockquote>
+				</div>
+
+
+			</section>
+
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="https://www.youtube.com/channel/UCu5NyREC0zwn76fnj7UlevA" class="icon fa-youtube"><span class="label">Facebook</span></a></li>
+				<li><a href="https://www.linkedin.com/in/erdemyildiz/" class="icon fa-linkedin"><span class="label">Dribbble</span></a></li>
+				<li><a href="https://github.com/ErdemStar" class="icon fa-github"><span class="label">Email</span></a></li>
+			</ul>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
