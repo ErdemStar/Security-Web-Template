@@ -1,0 +1,259 @@
+<!DOCTYPE HTML>
+<html lang="tr">
+
+<head>
+	<title>Hackademic RTB2</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../../index.html">Anasayfa</a></h1>
+		</header>
+
+		<!-- Main -->
+		<article id="main">
+
+			<section class="wrapper style5">
+
+				<div class="inner">
+					<h2>Hoşgeldiniz</h2>
+					<p>Bugün sizlere Hackademic RTB2'in nasıl çözüldüğünü göstermek istiyorum.Bu CTF'deki amacımız hedefe sızıp root olmak ve /root içersinde olan flag'ı okumaktır.CTF hakkında daha fazla bilgiye ulaşmak için <a target="_blank" href="https://www.vulnhub.com/entry/hackademic-rtb2,18/">tıklayınız</a>.</p>
+					<section>
+						<h4>Geçtiğimiz adımlar</h4>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<ul>
+									<li>Netdiscover ile IP adresi tespiti</li>
+									<li>Nmap ile açık port'ların tespiti</li>
+									<li>Dirb ve Nitko ile 80 port üzerinden bilgi toplama </li>
+									<li>SQL Login Bypass</li>
+									<li>Bazı decode işlemleri</li>
+									<li>Sqlmap ile hedef üzerinde limited shell alma</li>
+									<li>Hedeften PHP Reverse Shell alma</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>İlk adımda netdiscover komutu ile hedefin kulladığı IP adresini tespit ettim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/24-Hackademic.RTB2/1.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Nmap kullanarak hedef üzerinde çalışan servis ve portları buldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/24-Hackademic.RTB2/2.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Dirb kullanarak 80 portu üzerinden gizlenmiş yada varolan dosyaları/yolları tespit ettim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/24-Hackademic.RTB2/3.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Nikto ile 80 portu üzerinden daha fazla bilgi toplamaya çalıştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/24-Hackademic.RTB2/4.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Nikto ve Dirb çıktısından sonra artık sayfayı manuel incelemeye başladım.Karşıma fotoğraftaki gibi bir Login sayfası geldi.Burada SQL Login Bypass yaparak login olmaya çalıştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/24-Hackademic.RTB2/5.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Bir önceki fotoğraftaki payload ile login olmayı başardım.Daha sonra beni Check.php adlı sayfaya yönlendirdi.Bu sayfanın kaynak kodları fotoğrafdaki gibidir.Burada font tagi içersinde anlamasız veriler dikkatimi çekti.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/24-Hackademic.RTB2/6.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Bu verileri Burp kullanarak uygun bir formata çevirdiğimde ekrandaki gibi bir hale geldi.Elimde hala okuyamadığım binary datalar var.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/24-Hackademic.RTB2/7.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Bunları anladırmak için Binary to Text decode yapıp okumaya çalıştım.fotoğrafdaki gibi 4 haneli sayılar karşıma geldi.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/24-Hackademic.RTB2/8.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Knock kelimesi tıklatma anlamında olduğunu ve bana verilmiş 4 farklı 4 haneli sayılarında bir port olduğunu düşünerek.Knock tool'u ile hedef'in bu port'larına SYN packeti gönderdim.Daha sonra bir değişme olup olmadığını kontrol etmek için tekrar bir Nmap taraması yaptım.Resimde'de görebileceğiniz gibi kapalı olan 666 portu açıldı.Artık nereden devam edeceğimi biliyordum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/24-Hackademic.RTB2/9.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Önceki blog yazılarımda olduğu gibi fotoğrafdaki gibi bir URL gördüğünde oynuyarak eğer mümkünse SQL Error hatasını almaya çalışıyorum.Burada'da aynı şekilde işlemler yapıp umduğum sonucu aldım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/24-Hackademic.RTB2/10.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Sqlmap ile hedef üzerinden "--os-shell" parametresiyle hedef üzerinden limited bir shell aldım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/24-Hackademic.RTB2/11.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha sonra Python ile bir SimpleHTTPServer kurup hedefe PHP Reverse Shell indirmeye çalıştım.(Bu işlemi apache üzerinden yaptığımda sonuç alamadım.)</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/24-Hackademic.RTB2/12.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Burada sizlere hedefin Python SimpleHTTPServer'a istek yaptığını göstermek istedim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/24-Hackademic.RTB2/13.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha sonra hedef üzerinden wget ile alınmış PHP Reverse Shell'i tetikledim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/24-Hackademic.RTB2/14.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha önceden açtığım Netcat listener ile hedeften shell aldım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/24-Hackademic.RTB2/15.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Hedef üzerinde bilgi toplamaya çalıştım fakat kemdimce çok önemli şeyler bulamadığımı düşünerek exploitdb üzerinden uygun bir exploit aradım.14814.c exploit'ini indirip hedef üzerinde root oldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/24-Hackademic.RTB2/16.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Artık /root içerinde flag'ı okuyup CTF'i bitirmeyi düşündüğümde Key.txt içerisinde anlamsız verilerin olduğunu ve böyle bir key olamayacağını düşündüm.Sonra bu dosyayı netcat üzerinden kendi hostuma aldım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/24-Hackademic.RTB2/17.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Elimdeki bu dosyayı base64 ile decode edip çıktıyı bir dosyaya yönlendirdiğimde aslında flagin bir resim olduğunu öğrendim.Buradan sonra CTF başarıyla bitti.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/24-Hackademic.RTB2/18.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="inner">
+					<blockquote>Herhangi bir tavsiyede , eksikte veya problem'de bana aşağıdan paylaştığım sosyal medya hesapları üzerinden ulaşabilirsiniz.</blockquote>
+				</div>
+
+
+			</section>
+
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="https://www.youtube.com/channel/UCu5NyREC0zwn76fnj7UlevA" class="icon fa-youtube"><span class="label">Facebook</span></a></li>
+				<li><a href="https://www.linkedin.com/in/erdemyildiz/" class="icon fa-linkedin"><span class="label">Dribbble</span></a></li>
+				<li><a href="https://github.com/ErdemStar" class="icon fa-github"><span class="label">Email</span></a></li>
+			</ul>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
