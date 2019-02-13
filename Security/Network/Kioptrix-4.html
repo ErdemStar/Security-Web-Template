@@ -1,0 +1,201 @@
+<!DOCTYPE HTML>
+<html lang="tr">
+
+<head>
+	<title>Kioptrix Level 4</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../../index.html">Anasayfa</a></h1>
+		</header>
+
+		<!-- Main -->
+		<article id="main">
+
+			<section class="wrapper style5">
+
+				<div class="inner">
+					<h2>Hoşgeldiniz</h2>
+					<p>Bugün sizlere Kioptrix Level 4'in nasıl çözüldüğünü göstermek istiyorum.Bu CTF'deki amacımız root olmak olacaktır.CTF hakkında daha fazla bilgiye ulaşmak için <a target="_blank" href="https://www.vulnhub.com/entry/kioptrix-level-13-4,25/">tıklayınız</a>.</p>
+					<section>
+						<h4>Geçtiğimiz adımlar</h4>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<ul>
+									<li>Netdiscover ile hedef'in ip adresini öğrenme</li>
+									<li>Nmap ile açık port'ların tespiti</li>
+									<li>Dirb ile 80 port üzerinde keşif yapma</li>
+									<li>Enum4linux ile 445 portu üzerinden bilgi toplama</li>
+									<li>SQL Login Bypass</li>
+									<li>MySQL üzerinden sistem komutu çalıştırma</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Hedefin kullandığı ip adresini netdiscoveri ile bularak CTF'imize giriş yapıyoruz.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/25-Kioptrix-4/1.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>IP adresini öğrendikten sonra vakit kaybetmeden nmap ile açık portlar ve servisler hakkında bilgi topladım.</p>
+
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/25-Kioptrix-4/2.png" alt="" /></span></div>
+						</div>
+					</div>
+
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/25-Kioptrix-4/3.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+
+				<!-- image -->
+				<div class="inner">
+					<p>80 portunun açık olduğunu öğrendikten sonra bu port üzerinden bilgi toplamak için dirb'i kullandım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/25-Kioptrix-4/4.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Nmap çıktısından 445 portunda samba çalıştığını öğrendim.Bu port üzerinden bilgi toplamak için enum4linux tool'unu kulladındım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/25-Kioptrix-4/5.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Enum4linux ile birkaç username bilgisi elde ettim.Bunları tool'un çıktısından kopyalayıp cut ile sade bir hale getirdim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/25-Kioptrix-4/6.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Dahas sonra dirb'den elde ettiğim pathleri url'de tek tek denedim ve fotoğraftaki gibi bir login ekranınıyla karşılaştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/25-Kioptrix-4/7.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Enum4linux'den elde ettiğim username'leri SQL Injection payloadlarla kullanarak login olmaya çalıştım.Fotoğraftaki gibi bir çıktı aldım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/25-Kioptrix-4/8.png" alt="" /></span></div>
+						</div>
+					</div>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/25-Kioptrix-4/9.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Username bilgisi girdikten sonra ekranda gelen diğer bilgileri password olarak düşünüp SSH login olmayı deneyip sonuç aldım.Daha sonra beni limited shell karşıladı.Birkaç komut hariç hiçbirşey yapamıyordum.Bu adımda "echo" ile "bash"'e geçip atlattım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/25-Kioptrix-4/10.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>PHP script'lerinin çalıştığı path'leri karıştırdığımda mysql server'a root olarak bir password vermeden login olabileceğimi öğrendim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/25-Kioptrix-4/11.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>MySQL üzerinde birkaç araştırma yaptığımda "sys_exec" adlı bir function'nun olduğunu ve hedef üzerinde komut çalıştırabildiğimi öğrendim.Burada john'u admin gruba ekledim.Daha sonrada john'un password ile "sudo su" komutunu kullanıp root oldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/25-Kioptrix-4/12.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>"/root" path'ine giderek flag.txt'yi okudum.Bu adımdan sonra bu CTF'i başarıyla bitirdim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/25-Kioptrix-4/13.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+			<div class="inner">
+ 					<blockquote>Herhangi bir tavsiyede , eksikte veya problem'de bana aşağıdan paylaştığım sosyal medya hesapları üzerinden ulaşabilirsiniz.</blockquote>
+ 				</div>
+
+
+			</section>
+
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="https://www.youtube.com/channel/UCu5NyREC0zwn76fnj7UlevA" class="icon fa-youtube"><span class="label">Facebook</span></a></li>
+				<li><a href="https://www.linkedin.com/in/erdemyildiz/" class="icon fa-linkedin"><span class="label">Dribbble</span></a></li>
+				<li><a href="https://github.com/ErdemStar" class="icon fa-github"><span class="label">Email</span></a></li>
+			</ul>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
