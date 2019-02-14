@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+<html lang="tr">
+
+<head>
+	<title>Mr Robot</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../../index.html">Anasayfa</a></h1>
+		</header>
+
+		<!-- Main -->
+		<article id="main">
+
+			<section class="wrapper style5">
+
+				<div class="inner">
+					<h2>Hoşgeldiniz</h2>
+					<p>Bugün sizlere  Mr Robot'un nasıl çözüldüğünü göstermek istiyorum.Bu CTF'deki amacımız hedef'e root olup 3 adet saklanmış flag'i okumak olacaktır.CTF hakkında daha fazla bilgiye ulaşmak için <a target="_blank" href="https://www.vulnhub.com/entry/mr-robot-1,151/">tıklayınız</a>.</p>
+					<section>
+						<h4>Geçtiğimiz adımlar</h4>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<ul>
+									<li>Netdiscover ile hedef'in ip adresini öğrenme</li>
+									<li>Nmap ile açık port'ların tespiti</li>
+									<li>Dirb ne Nitko ile 80 port'ları üzerinden bilgi toplama</li>
+									<li>Wpscan ile wordpress üzerinden bilgi toplama & Login Brute Force</li>
+									<li>Hedef üzerinden PHP Reverse Shell alma</li>
+									<li>Nmap'i kullanarak root olma</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>İlk olarak hedefin kullandığı ip adresini bularak CTF'e başladım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/27-Mr_robot/1.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Ip adresini bulduktan sonra açık olan port'lar ve servisler hakkından bilgi edinmek için Nmap'ı kullandım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/27-Mr_robot/2.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Dirb ile 80 portu üzerinden gidebileceğim path'leri veya görebileceğim dosyaların yollarını öğrenmeye çalıştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/27-Mr_robot/3.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Dirb'e ek olarka Nitko ile 80 portu üzerinden bilgi toplamaya devam ettim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/27-Mr_robot/4.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Elde ettiğim Dirb ve Nikto çıktılarıdan sonra hedef üzerinde bir Wordpress uygulaması çalıştığını öğrendim.Daha sonra fotoğraftadaki gibi bir sayfayla karşılaştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/27-Mr_robot/5.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Pathlere dolaşmaya devam ederken robots.txt adlı bir dosya olduğunu öğrendim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/27-Mr_robot/6.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Robots.txt'de gördüğüm ilk path'i URL'e girdikten sonra bir ".dic" uzantılı bir dosya makinama indirildi.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/27-Mr_robot/7.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Diğer path'i URL'e girdiğimde ise ilk flagimi yakalamış oldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/27-Mr_robot/8.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Hedef üzerinde wordpress tabanlı bir uygulama çalıştığı için wpscan ile bu uygulama hakında bilgi topladım.Uygulama çıktısı olarak 2 farklı username bilgisi elde ettim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/27-Mr_robot/9.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Elde ettiğim usernameleri ve ilk başlarda indirdiğim ".dic" uzantılı dosyayı wpscan ile HTTP Login Brute Force yapmak için hazırladım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/27-Mr_robot/10.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Burada sizlere hedef üzerinde wordpress'e login olabilecek username ve onların password'lerini gösterdim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/27-Mr_robot/11.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Elliot ile login olduktan sonra ben wordpress'in backhand'de php kullandığını biliyordum.Fotoğraftada hedef üzerinde echo ile yazı yazdırmaya çalıştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/27-Mr_robot/12.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Ekranda "Erdemstar" yazısını gördükten sonra artık hedef üzerinde PHP kodları çalıştıracağımı tekrar doğruladım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/27-Mr_robot/13.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Burada PHP Reverse Shell kodları yazıp hedeften shell almaya çalıştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/27-Mr_robot/14.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha önceden başlattığım netcat listener'ına Reverse Shell almak için kullandım.Fotoğraftada görebileceğiniz gibi hedef üzerinden shell aldım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/27-Mr_robot/15.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Hedef üzerinden gezinirken "/home/robot" pathinde "password.raw-md5" adlı bir dosya buldum.Md5 decode ettiğimde "abcdefghijklmnopqrstuvwxyz" şöyle bir çıktı aldım.Daha sonra bunu robot kullanıcı password olarak denediğimde artık hedef üzerinde robot kullanıcısı oldum.Daha sonra 2.flagımı okudum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/27-Mr_robot/16.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Burada find komutuyla robot user'inin "SUID(Bir dosyayı asıl sahibi yetkisiyle kullanmaktır.)" biti atanmış dosyalarını aradığımda nmap ile karşılaştım.Burada nmap'in root yetkisiyle çalıştırılabileceğini öğrendim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/27-Mr_robot/17.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Fotoğraftada sizlere nmap'ın bazı versiyonlarında "--interactive" modu olup kullanıcıya nmap üzerinden sistem komutları çalıştırmaya izin verdiği özelliği gösterdim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/27-Mr_robot/18.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Daha sonrada Fotoğraftada gösterdiğim adımları izlediğimde root olmuştum.Bu adımdan sonra son flagimi okuyup CTF'i bitiriyorum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/27-Mr_robot/19.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+
+			<div class="inner">
+ 					<blockquote>Herhangi bir tavsiyede , eksikte veya problem'de bana aşağıdan paylaştığım sosyal medya hesapları üzerinden ulaşabilirsiniz.</blockquote>
+ 				</div>
+
+
+			</section>
+
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="https://www.youtube.com/channel/UCu5NyREC0zwn76fnj7UlevA" class="icon fa-youtube"><span class="label">Facebook</span></a></li>
+				<li><a href="https://www.linkedin.com/in/erdemyildiz/" class="icon fa-linkedin"><span class="label">Dribbble</span></a></li>
+				<li><a href="https://github.com/ErdemStar" class="icon fa-github"><span class="label">Email</span></a></li>
+			</ul>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
