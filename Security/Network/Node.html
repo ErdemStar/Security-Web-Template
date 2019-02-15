@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<html lang="tr">
+
+<head>
+	<title>Node</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../../index.html">Anasayfa</a></h1>
+		</header>
+
+		<!-- Main -->
+		<article id="main">
+
+			<section class="wrapper style5">
+
+				<div class="inner">
+					<h2>Hoşgeldiniz</h2>
+					<p>Bugün sizlere  Node'un nasıl çözüldüğünü göstermek istiyorum.Bu CTF'deki amacımız hedef'e root olup /root/flag'i okumak olacaktır.CTF hakkında daha fazla bilgiye ulaşmak için <a target="_blank" href="https://www.vulnhub.com/entry/mr-robot-1,151/">tıklayınız</a>.</p>
+					<section>
+						<h4>Geçtiğimiz adımlar</h4>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<ul>
+									<li>Netdiscover ile hedef'in ip adresini öğrenme</li>
+									<li>Nmap ile açık port'ların tespiti</li>
+									<li>Dirb ne Nitko ile 80 port'ları üzerinden bilgi toplama</li>
+									<li>Frackzip ile Zip Password Brute Force yapma</li>
+									<li>Exploit indirip root olma</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>İlk olarak hedefin kullandığı ip adresini bularak CTF'e başladım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/28-Node/1.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Ip adresini bulduktan sonra açık olan port'lar ve servisler hakkından bilgi edinmek için Nmap'ı kullandım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/28-Node/2.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Dirb ile 3000 portu üzerinden gidebileceğim path'leri veya görebileceğim dosyaların yollarını öğrenmeye çalıştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/28-Node/3.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Dirb'e ek olarka Nitko ile 3000 portu üzerinden bilgi toplamaya devam ettim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/28-Node/4.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Artık 3000 portu üzerinde çalışan uygulama üzerinde manuel olarak hareket edip işime yarayacak şeyler aradım.Burada gözüme çarpan birkaç path'i sizlere göstermek istedim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/28-Node/5.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Path'lerin bir tanesinde id , username , password ve is_admin bilgilerini tutulduğunu keşfettim.Bunları sonra kullanmak üzere saklıyorum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/28-Node/6.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Gezinmeye devam ederken farklı bir URL'de "is_admin=true" olan bir kullanıcı buldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/28-Node/7.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Elde ettiğim user'ların password'leri md5 ile okunumaz hale getirildiğini anladım.Burada data'ları clear-text hala getirdim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/28-Node/8.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Son halini sizlere göstermek istedim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/28-Node/9.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Elde ettiğim bilgileri ilk önce hedefe SSH olmak için kullandığımda sonuç alamadım.Daha sonra fotoğraftadaki dirb'den elde ettiğim /login ekranına geldip denedim.Login ekranında "myP14ceAdm1nAcc0uNT:manchester" kullanıcısı ile login oldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/28-Node/10.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Burada diğer kullanıcılarda olmayan "Download Backup" butonu karşıladı beni.Tıkladığımda ise makinama "myplace.backup" adli bir dosya indirldi.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/28-Node/11.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Dosya üzerinde birkaç işlem yaptım fakat pek sonuç alamadım.Daha sonra dosyayı okuyup base64 ile decode ettip çıktıyı başka bir dosyaya yönlendirdiğimde karşıma zip dosyayı çıktı.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/28-Node/12.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Zip'i çıkarmak istediğimde benden password istediği için burada frackzip'i kullanıp zip'in passwordunu bulmaya çalıştım.Sonuç olarak ise "magicword" kelimesine ulaştım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/28-Node/13.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Burada sizlere zip'li dosyayı "magicword" passwordunu kullanarak çıkardığımı göstermek istedim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/28-Node/14.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Zip'li dosyanın çıktısında 3000 portu üzerinde çalışan Nodejs uygulamasının kodlarını içerdiğini anladım.Artık bu dosya içerisinde işe yarar bilgiler elde etmeyi umuyordum.Fotoğrafı incelediğimde ise "mark:5AYRft79VtFpc84" adlı bilgilerle mongodb'ye istek yapıldığını öğrendim.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/28-Node/15.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Bu bilgileri kullanarak SSH login olmaya çalıştıdığımda sonuç aldım.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/28-Node/16.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- image -->
+				<div class="inner">
+					<p>Hedef üzerinde birkaç birşey denesemde bir sonuç alamadım.Daha sonra sistem bilgisin öğrenip bununla ilişkili bir exploit bulup indirdim.Bunu sistem üzerinde çalıştırmayı denediğimde sonuç alıp root oldum.Daha sonra "/root" path'ini okuyarak flag'imi bulmuş oldum.Bu adımdan sonra CTF'i bitirmiş oldum.</p>
+					<div class="box alt">
+						<div class="row gtr-50 gtr-uniform">
+							<div class="col-12"><span class="image fit"><img src="../../images/Network/28-Node/17.png" alt="" /></span></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="inner" style="margin-bottom:3%">
+					<code>Internetten Node walkthrought yazdığınızda başka yöntemlerle'de çözüldüğünü göreceksiniz.Benimki bunlardan sadece biridir.</code>
+				</div>
+
+				<div class="inner">
+ 					<blockquote>Herhangi bir tavsiyede , eksikte veya problem'de bana aşağıdan paylaştığım sosyal medya hesapları üzerinden ulaşabilirsiniz.</blockquote>
+ 				</div>
+
+
+			</section>
+
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="https://www.youtube.com/channel/UCu5NyREC0zwn76fnj7UlevA" class="icon fa-youtube"><span class="label">Facebook</span></a></li>
+				<li><a href="https://www.linkedin.com/in/erdemyildiz/" class="icon fa-linkedin"><span class="label">Dribbble</span></a></li>
+				<li><a href="https://github.com/ErdemStar" class="icon fa-github"><span class="label">Email</span></a></li>
+			</ul>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
